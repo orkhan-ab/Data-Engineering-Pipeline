@@ -1,0 +1,89 @@
+@prefix country: <https://publications.europa.eu/resource/distribution/country/rdf/skos_core/countries-skos.rdf#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eurovoc: <http://publications.europa.eu/resource/dataset/eurovoc/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix freq: <https://publications.europa.eu/resource/distribution/frequency/rdf/skos_core/frequencies-skos.rdf#> .
+@prefix ndbi: <https://ksi.mff.cuni.cz/~orkhan/232-NDBI046#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix spdx: <http://spdx.org/rdf/terms#> .
+@prefix vcard: <https://www.w3.org/2006/vcard/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ndbi:Catalog a dcat:Catalog ;
+    dcterms:accessRights "public" ;
+    dcterms:accrualPeriodicity freq:ANNUAL ;
+    dcterms:description "Catalog of the Olympics data cube dataset."@en ;
+    dcterms:issued "2025-04-30T00:00:00"^^xsd:dateTime ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:modified "2025-04-30T00:00:00"^^xsd:dateTime ;
+    dcterms:publisher ndbi:Publisher ;
+    dcterms:title "Olympics Data Cube Catalog"@en ;
+    dcat:contactPoint <mailto:orkhanabilov17@gmail.com> ;
+    dcat:dataset ndbi:OlympicsDataCube ;
+    dcat:keyword "Olympics"@en,
+        "data cube"@en,
+        "rdf"@en ;
+    dcat:theme eurovoc:5274,
+        eurovoc:6030 .
+
+ndbi:FactOlympicsCSV a dcat:Distribution ;
+    dcterms:format "CSV"@en ;
+    dcterms:title "CSV Distribution of Olympics Data"@en ;
+    spdx:checksum [ a spdx:Checksum ;
+            spdx:algorithm spdx:checksumAlgorithm_sha1 ;
+            spdx:checksumValue "caa3842697e0474b6c250fe562b97740e8130d47"^^xsd:hexBinary ] ;
+    dcat:accessURL <https://gitlab.mff.cuni.cz/teaching/ndbi046/2024-25/orkhan-abilov/HW-3-Data-Cube/fact_olympics_raw.csv> ;
+    dcat:byteSize "144143"^^xsd:nonNegativeInteger ;
+    dcat:downloadURL <https://gitlab.mff.cuni.cz/teaching/ndbi046/2024-25/orkhan-abilov/HW-3-Data-Cube/fact_olympics_raw.csv> ;
+    dcat:mediaType <https://www.iana.org/assignments/media-types/text/csv> ;
+    prov:wasGeneratedBy ndbi:ETL_Olympics .
+
+ndbi:OlympicsCubeTTL a dcat:Distribution ;
+    dcterms:format "Turtle"@en ;
+    dcterms:title "TTL Distribution of Olympics Data"@en ;
+    spdx:checksum [ a spdx:Checksum ;
+            spdx:algorithm spdx:checksumAlgorithm_sha1 ;
+            spdx:checksumValue "0f3e57a165043202891d657d91b6ae877e9e3f01"^^xsd:hexBinary ] ;
+    dcat:accessURL <https://gitlab.mff.cuni.cz/teaching/ndbi046/2024-25/orkhan-abilov/HW-3-Data-Cube/output.ttl> ;
+    dcat:byteSize "789012"^^xsd:nonNegativeInteger ;
+    dcat:downloadURL <https://gitlab.mff.cuni.cz/teaching/ndbi046/2024-25/orkhan-abilov/HW-3-Data-Cube/output.ttl> ;
+    dcat:mediaType <https://www.iana.org/assignments/media-types/text/turtle> ;
+    prov:wasGeneratedBy ndbi:DataCubeActivity .
+
+ndbi:OlympicsDataCube a dcat:Dataset ;
+    dcterms:accessRights "public" ;
+    dcterms:creator ndbi:OrkhanAbilov ;
+    dcterms:description "A data cube built from Olympic fact table."@en ;
+    dcterms:issued "2025-04-30T00:00:00"^^xsd:dateTime ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:modified "2025-04-30T00:00:00"^^xsd:dateTime ;
+    dcterms:publisher ndbi:Publisher ;
+    dcterms:rights "© Orkhan Abilov 2025" ;
+    dcterms:spatial country:CZE ;
+    dcterms:temporal [ a dcterms:PeriodOfTime ;
+            dcat:endDate "2021-07-27"^^xsd:date ;
+            dcat:startDate "2021-07-27"^^xsd:date ] ;
+    dcterms:title "Olympics Data Cube"@en ;
+    dcat:contactPoint [ vcard:fn "Orkhan Abilov" ;
+            vcard:hasEmail <mailto:orkhanabilov17@gmail.com> ] ;
+    dcat:distribution ndbi:FactOlympicsCSV,
+        ndbi:OlympicsCubeTTL ;
+    dcat:keyword "Olympics"@en,
+        "countries"@en,
+        "medals"@en ;
+    dcat:theme eurovoc:1530,
+        eurovoc:2554,
+        eurovoc:3329 ;
+    prov:wasGeneratedBy ndbi:DataCubeActivity .
+
+ndbi:OrkhanAbilov a foaf:Person ;
+    foaf:givenName "Orkhan Abilov"@en ;
+    foaf:mbox <mailto:orkhanabilov17@gmail.com> .
+
+ndbi:Publisher a foaf:Organization ;
+    rdfs:label "Matematicko-fyzikální fakulta, Karlova univerzita"@cs,
+        "Faculty of Mathematics and Physics, Charles University in Prague"@en ;
+    foaf:homepage "https://www.mff.cuni.cz/"^^xsd:anyURI .
+
